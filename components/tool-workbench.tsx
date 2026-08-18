@@ -5,6 +5,7 @@ import { ExpandedCalculatorTool, expandedCalculatorSlugs } from "./tools/expande
 import { ExpandedTextTool, expandedTextSlugs } from "./tools/expanded-text-tools";
 import { AgeTool, ChmodTool, NetworkTool, PasswordTool, RandomNumberTool, TimeZoneTool, UnitTool, UtmTool } from "./tools/expanded-special-tools";
 import { ImageUtilityTool, PdfMergerTool, PdfSplitterTool, QrTool } from "./tools/essential-file-tools";
+import { PdfBottomCropperTool } from "./tools/pdf-bottom-cropper-tool";
 import { SecondCalculatorTool, secondCalculatorSlugs } from "./tools/second-calculator-tools";
 import { SecondFileTool, secondFileSlugs } from "./tools/second-file-tools";
 import { SecondSpecialTool, secondSpecialSlugs } from "./tools/second-special-tools";
@@ -68,6 +69,7 @@ export function ToolWorkbench({ slug, name }: { slug: string; name: string }) {
     case "webp-to-jpg-converter": return <ImageUtilityTool name={name} slug={slug} />;
     case "pdf-merger": return <PdfMergerTool name={name} />;
     case "pdf-splitter": return <PdfSplitterTool name={name} />;
+    case "pdf-bottom-cropper": return <PdfBottomCropperTool name={name} />;
     case "random-number-generator": return <RandomNumberTool name={name} />;
     case "time-zone-converter": return <TimeZoneTool name={name} />;
     default: return null;

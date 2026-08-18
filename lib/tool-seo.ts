@@ -170,6 +170,7 @@ function reviewInstruction(tool: Tool) {
   if (/image-(resizer|compressor|cropper)|jpg-to-png|png-to-jpg|webp-to-jpg|svg-to-png|image-to-base64/.test(slug)) return "Check the preview, dimensions, format, and file size before downloading. Open the saved image once to make sure it works.";
   if (slug === "pdf-merger") return "Check that every source file is present and arranged in the correct page order before downloading the merged PDF.";
   if (slug === "pdf-splitter") return "Check the selected page range or the number of separate pages before downloading the split PDF files.";
+  if (slug === "pdf-bottom-cropper") return "Confirm the millimetre amount, page count, and per-file status before downloading cropped-pdfs.zip. Source PDFs remain unchanged.";
   if (slug === "bank-statement-pdf-to-csv-converter") return "Review the detected transaction rows, dates, descriptions, amounts, and balances before downloading the CSV.";
   if (slug === "psd-to-png-converter") return "Check the flattened preview and image dimensions before downloading the PNG. Open the saved image once to make sure it works.";
   if (slug === "mp3-to-midi-converter") return "Review the detected notes and timing before downloading the MIDI file. A clean single-note recording produces the most useful result.";

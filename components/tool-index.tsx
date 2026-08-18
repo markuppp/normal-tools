@@ -47,7 +47,7 @@ const popularityOrder: Record<Tool["category"], string[]> = {
   ],
   Files: [
     "image-resizer", "image-compressor", "jpg-to-png-converter", "png-to-jpg-converter",
-    "webp-to-jpg-converter", "pdf-merger", "pdf-splitter", "image-cropper",
+    "webp-to-jpg-converter", "pdf-merger", "pdf-splitter", "pdf-bottom-cropper", "image-cropper",
     "svg-to-png-converter", "image-to-base64-converter", "csv-viewer", "psd-to-png-converter",
     "mp3-to-midi-converter", "dwg-to-pdf-converter", "bank-statement-pdf-to-csv-converter",
     "stl-to-g-code-converter",

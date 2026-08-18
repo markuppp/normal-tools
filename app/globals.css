@@ -607,6 +607,65 @@ h1 {
 .palette-strip button:last-child { border-right: 0; }
 .palette-strip span { padding: 3px 5px; background: rgba(0,0,0,.18); font: 9px var(--mono); }
 
+/* PDF bottom cropper */
+.pdf-cropper-shell { display: grid; gap: 14px; }
+.pdf-crop-dropzone {
+  min-height: 205px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 5px;
+  border: 1px dashed #7d9d86;
+  background: #f4f8f1;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+}
+.pdf-crop-dropzone:hover, .pdf-crop-dropzone.is-dragging { border-color: var(--green); background: #e7f1e9; }
+.pdf-crop-dropzone strong { color: var(--ink); font: 700 16px var(--sans); }
+.pdf-crop-dropzone > span:not(.pdf-crop-document-mark) { font-size: 11px; }
+.pdf-crop-dropzone > .plain-button { margin-top: 8px; }
+.pdf-crop-document-mark, .pdf-crop-file-symbol {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-dark);
+  background: var(--paper);
+  color: var(--ink);
+  font: 700 10px var(--mono);
+}
+.pdf-crop-document-mark { width: 58px; height: 58px; margin-bottom: 5px; border-radius: 50%; font-size: 12px; }
+.pdf-crop-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 6px; border-bottom: 2px solid var(--ink); }
+.pdf-crop-section-heading h2 { margin: 0; font: 700 14px var(--sans); }
+.pdf-crop-section-heading span { color: var(--muted); font: 10px var(--mono); }
+.pdf-crop-list { overflow: hidden; border: 1px solid var(--line-dark); background: var(--surface); }
+.pdf-crop-empty { margin: 0; padding: 18px 12px; color: var(--muted); font-size: 11px; text-align: center; }
+.pdf-crop-file-row { display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(100px, .4fr) 27px; gap: 10px; align-items: center; min-height: 48px; padding: 6px 9px; border-bottom: 1px solid var(--line); }
+.pdf-crop-file-row:last-child, .pdf-crop-progress-row:last-child { border-bottom: 0; }
+.pdf-crop-file-row strong, .pdf-crop-progress-row strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; }
+.pdf-crop-file-symbol { width: 28px; height: 26px; font-size: 8px; }
+.pdf-crop-page-count { color: var(--muted); font: 10px var(--mono); }
+.pdf-crop-error-text { overflow: hidden; color: var(--red); font: 10px var(--mono); text-overflow: ellipsis; white-space: nowrap; }
+.pdf-crop-remove { border: 0; background: transparent; color: var(--red); cursor: pointer; font: 22px/1 Arial, sans-serif; }
+.pdf-crop-remove:disabled { cursor: not-allowed; opacity: .45; }
+.pdf-crop-controls { display: grid; grid-template-columns: minmax(230px, .8fr) minmax(330px, 1.2fr); gap: 18px; align-items: end; padding: 12px; border: 1px solid var(--line-dark); background: #faf8f2; }
+.pdf-crop-controls .field { max-width: 320px; }
+.pdf-crop-presets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+.pdf-crop-presets button { min-height: 38px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font: 10px var(--mono); }
+.pdf-crop-presets button:hover, .pdf-crop-presets button.is-selected { border-color: var(--green); background: #e7f1e9; color: #245e3c; }
+.pdf-crop-action { display: flex; justify-content: center; }
+.pdf-crop-action .primary-button { min-width: min(380px, 100%); }
+.pdf-crop-progress-heading { margin-top: 4px; }
+.pdf-crop-progress-row { display: grid; grid-template-columns: minmax(150px, .9fr) minmax(140px, .75fr) minmax(120px, 1fr) 20px; gap: 10px; align-items: center; min-height: 43px; padding: 6px 9px; border-bottom: 1px solid var(--line); }
+.pdf-crop-status { overflow: hidden; color: var(--muted); font: 10px var(--mono); text-overflow: ellipsis; white-space: nowrap; }
+.pdf-crop-status-processing { color: var(--link); }
+.pdf-crop-status-success { color: var(--green); }
+.pdf-crop-status-error { color: var(--red); }
+.pdf-crop-progress-track { height: 6px; overflow: hidden; background: #e5e1d6; }
+.pdf-crop-progress-track i { display: block; height: 100%; background: var(--green); transition: width 160ms ease; }
+.pdf-crop-progress-row:has(.pdf-crop-status-error) .pdf-crop-progress-track i { background: var(--red); }
+.pdf-crop-progress-row > b { color: var(--green); font: 700 15px var(--mono); text-align: center; }
+.pdf-crop-progress-row:has(.pdf-crop-status-error) > b { color: var(--red); }
+
 @media print {
   .site-header, .site-footer, .breadcrumbs, .tool-hero, .tool-box-bar, .tool-actions, .plain-button, .tool-caution, .content-section, .skip-link { display: none !important; }
   html, body, .tool-box, .tool-box-body, .contract-preview { background: white !important; border: 0 !important; }
@@ -644,6 +703,12 @@ h1 {
   .regex-line { grid-template-columns: 1fr; }
   .qr-layout { grid-template-columns: 1fr; }
   .qr-preview { min-height: 240px; }
+  .pdf-crop-controls { grid-template-columns: 1fr; }
+  .pdf-crop-controls .field { max-width: none; }
+  .pdf-crop-presets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pdf-crop-progress-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .pdf-crop-progress-row .pdf-crop-status { grid-column: 1 / -1; }
+  .pdf-crop-progress-track { grid-column: 1 / 2; }
   .permission-grid { grid-template-columns: 1fr; }
   .permission-grid label { border-right: 0; }
   .permission-grid label:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); }
